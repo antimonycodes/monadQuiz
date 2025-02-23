@@ -57,7 +57,7 @@ const Homepage: React.FC<HomepageProps> = ({ onPlayClick }) => {
   };
 
   return (
-    <div className="bg-purple-600 border h-screen border-gray-400 rounded-2xl p-4 flex flex-col items-center gap-12">
+    <div className="bg-purple-600 h-screen border  border-gray-400 rounded-2xl p-4 flex flex-col items-center gap-12">
       {/* user details */}
       <div className=" w-full flex justify-between items-center mb-6">
         {/* name */}
