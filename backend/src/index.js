@@ -107,22 +107,30 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // ✅ Serve static files (avatars)
-const avatarsDir = path.join(__dirname, "public/avatars");
-if (!fs.existsSync(avatarsDir)) {
-  fs.mkdirSync(avatarsDir, { recursive: true }); // Create if missing
-}
+const avatarsDir = path.join(__dirname, "../public/avatars"); // Go one level up
+console.log("Resolved Avatars Directory:", avatarsDir);
 
 app.use("/avatars", express.static(avatarsDir));
+
 app.get("/api/avatars", (req, res) => {
+  if (!fs.existsSync(avatarsDir)) {
+    console.error("❌ Avatars directory not found:", avatarsDir);
+    return res.status(500).json({ message: "Avatars directory not found" });
+  }
+
   fs.readdir(avatarsDir, (err, files) => {
     if (err) {
-      console.error("Error reading avatars directory:", err);
-      return res.status(500).json({ message: "Avatars directory not found.." });
+      console.error("❌ Error reading avatars directory:", err);
+      return res.status(500).json({ message: "Error reading avatars" });
+    }
+
+    if (files.length === 0) {
+      console.warn("⚠️ No avatars found in:", avatarsDir);
     }
 
     const avatars = files.map((file) => ({
       filename: file,
-      url: `/avatars/${file}`,
+      url: `${req.protocol}://${req.get("host")}/avatars/${file}`, // Ensure proper URL
     }));
 
     res.status(200).json(avatars);
