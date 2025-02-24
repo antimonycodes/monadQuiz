@@ -1,97 +1,14 @@
-// import User from "../models/User.js";
-
-// // Save a new user with a unique username and PIN
-// export const saveUser = async (req, res) => {
-//   const { username, pin, avatar } = req.body;
-
-//   try {
-//     const newUser = new User({
-//       username,
-//       pin,
-//       avatar: `http://localhost:5001/avatars/${avatar}`,
-//     });
-//     await newUser.save();
-//     res
-//       .status(201)
-//       .json({ message: "User created successfully", user: newUser });
-//   } catch (error) {
-//     console.log(error);
-//     if (error.code === 11000) {
-//       return res
-//         .status(400)
-//         .json({ message: "Username already exists, choose another one" });
-//     }
-//     res.status(500).json({ message: "Server error", error });
-//   }
-// };
-
-// // Sign in user
-// export const signInUser = async (req, res) => {
-//   const { username, pin } = req.body;
-
-//   try {
-//     const user = await User.findOne({ username, pin });
-//     if (!user) {
-//       return res.status(401).json({ message: "Invalid username or PIN" });
-//     }
-//     res.status(200).json({ message: "Sign-in successful", user });
-//   } catch (error) {
-//     res.status(500).json({ message: "Server error", error });
-//   }
-// };
-
-// // Get the leaderboard
-// export const getLeaderboard = async (req, res) => {
-//   try {
-//     const users = await User.find().sort({ score: -1 }).limit(10);
-//     res.status(200).json(users);
-//   } catch (error) {
-//     res.status(500).json({ message: "Server error", error });
-//   }
-// };
-
-// // Update user score
-// export const updateUserScore = async (req, res) => {
-//   const { username, score } = req.body;
-
-//   try {
-//     const user = await User.findOneAndUpdate(
-//       { username },
-//       { score },
-//       { new: true, upsert: true }
-//     );
-//     res.status(200).json({ message: "Score updated successfully", user });
-//   } catch (error) {
-//     res.status(500).json({ message: "Server error", error });
-//   }
-// };
-
-// // Get user score and avatar
-// export const getUserScore = async (req, res) => {
-//   const { username } = req.params;
-
-//   try {
-//     const user = await User.findOne({ username });
-//     if (!user) {
-//       return res.status(404).json({ message: "User not found" });
-//     }
-//     res.status(200).json({ score: user.score, avatar: user.avatar });
-//   } catch (error) {
-//     res.status(500).json({ message: "Server error", error });
-//   }
-// };
-
 import User from "../models/User.js";
 import { hash, compare } from "bcrypt";
 import validator from "validator";
-// import rateLimit from "express-rate-limit";
+import rateLimit from "express-rate-limit";
 
 // Rate limiting for auth endpoints
-// export const authLimiter = rateLimit({
-//   windowMs: 15 * 60 * 1000, // 15 minutes
-//   max: 5, // 5 attempts
-//   message: { message: "Too many attempts, please try again later" },
-// });
+export const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // 5 attempts
+  message: { message: "Too many attempts, please try again later" },
+});
 
 // Validate username and PIN
 const validateUserInput = (username, pin) => {

@@ -48,7 +48,7 @@ const LeaderBoard = () => {
                   <div className="w-16 h-16 rounded-full bg-gray-400 mb-2 mx-auto overflow-hidden border-2 border-white">
                     <img
                       src={leaderboard[1].avatar}
-                      alt="Second place"
+                      alt={leaderboard[1].username[0].toUpperCase()}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -72,7 +72,7 @@ const LeaderBoard = () => {
                   <div className="w-20 h-20 rounded-full bg-yellow-400 mb-2 mx-auto overflow-hidden border-2 border-white">
                     <img
                       src={leaderboard[0].avatar}
-                      alt="First place"
+                      alt={leaderboard[0].username[0].toUpperCase()}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -96,7 +96,7 @@ const LeaderBoard = () => {
                   <div className="w-16 h-16 rounded-full bg-gray-500 mb-2 mx-auto overflow-hidden border-2 border-white">
                     <img
                       src={leaderboard[2].avatar}
-                      alt="Third place"
+                      alt={leaderboard[2].username[0].toUpperCase()}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -125,7 +125,7 @@ const LeaderBoard = () => {
                 <div className="w-8 h-8 rounded-full bg-gray-200 mr-3 overflow-hidden">
                   <img
                     src={user.avatar}
-                    alt={user.username}
+                    alt={user.username[0]}
                     className="w-full h-full object-cover"
                   />
                 </div>

@@ -28,7 +28,7 @@ const Questions: React.FC<QuestionProps> = ({
     <div className="pb- bg-purple-60 rounded-2xl p4">
       <div className="max-w-sm mx-auto">
         {/* Header */}
-        <div className="flex items-center text-white mb-4">
+        <div className="flex items-center text-white mb-4 h-fit">
           <button className="flex items-center" onClick={() => navigate(-1)}>
             <ChevronLeft className=" size-2.5" />
             <span>Back</span>
