@@ -10,7 +10,7 @@ svg text {
   animation: stroke 5s infinite alternate;
   stroke-width: 2;
   stroke: black;
-  font-size: 40px;
+  font-size: 30px;
 }
 @keyframes stroke {
   0% {

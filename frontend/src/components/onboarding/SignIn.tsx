@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../lib/axios";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const SignIn = () => {
   const [username, setUsername] = useState("");
@@ -18,7 +19,19 @@ const SignIn = () => {
       localStorage.setItem("username", response.data.user.username);
       navigate("/quiz");
     } catch (error: any) {
-      toast(error.response?.data?.message || "An error occurred");
+      if (axios.isAxiosError(error) && error.response) {
+        if (error.response.data.errors) {
+          // Validation errors (e.g., invalid username or PIN format)
+          Object.values(error.response.data.errors).forEach((errMsg: any) =>
+            toast(errMsg)
+          );
+        } else {
+          // General error message
+          toast(error.response.data.message);
+        }
+      } else {
+        toast("An unexpected error occurred");
+      }
     }
   };
 

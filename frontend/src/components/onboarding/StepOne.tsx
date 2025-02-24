@@ -36,6 +36,7 @@ const StepOne = () => {
         pin,
         avatar: selectedAvatar,
       });
+
       toast(response.data.message);
       if (response.status === 201) {
         navigate("/quiz");
@@ -44,7 +45,19 @@ const StepOne = () => {
     } catch (error) {
       console.log(error);
       if (axios.isAxiosError(error) && error.response) {
-        toast(error.response.data.message);
+        const errorData = error.response.data;
+
+        // Check if validation errors exist
+        if (errorData.errors) {
+          // Convert errors object into a readable message
+          const errorMessages = Object.values(errorData.errors).join(" | ");
+          toast(errorMessages);
+        } else if (errorData.message) {
+          // Handle other types of errors
+          toast(errorData.message);
+        } else {
+          toast("An unexpected error occurred");
+        }
       } else {
         toast("An unexpected error occurred");
       }
@@ -52,9 +65,9 @@ const StepOne = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#9489FC] p-8 flex flex-col">
+    <div className="min-h-screen bg-[#9489FC] p-4 flex flex-col">
       <div className="flex-1 flex flex-col items-center justify-center">
-        <div className="wrapper w-full">
+        <div className="wrapper w-full h-fit mb-">
           <svg>
             <text x="50%" y="50%" dy=".35em" text-anchor="middle">
               Dave X Antimony
