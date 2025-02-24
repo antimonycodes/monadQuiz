@@ -33,9 +33,9 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.resolve();
 
 // Serve static files
-app.use("/avatars", express.static(path.join(__dirname, "public/avatars")));
+app.use("/avatars", express.static(path.join(rootDir, "public/avatars")));
 app.get("/api/avatars", (req, res) => {
-  const avatarsDir = path.join(__dirname, "public/avatars");
+  const avatarsDir = path.join(rootDir, "public/avatars");
   fs.readdir(avatarsDir, (err, files) => {
     if (err) {
       console.error("Error reading avatars directory:", err);
@@ -60,7 +60,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(rootDir, "frontend", "dist", "index.html"));
+    res.sendFile(path.resolve(rootDir, "../../frontend", "dist", "index.html"));
   });
 }
 
