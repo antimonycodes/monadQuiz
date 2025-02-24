@@ -37,7 +37,7 @@ const StepOne = () => {
         avatar: selectedAvatar,
       });
 
-      toast(response.data.message);
+      toast.success(response.data.message);
       if (response.status === 201) {
         navigate("/quiz");
       }
@@ -51,15 +51,15 @@ const StepOne = () => {
         if (errorData.errors) {
           // Convert errors object into a readable message
           const errorMessages = Object.values(errorData.errors).join(" | ");
-          toast(errorMessages);
+          toast.error(errorMessages);
         } else if (errorData.message) {
           // Handle other types of errors
-          toast(errorData.message);
+          toast.error(errorData.message);
         } else {
-          toast("An unexpected error occurred");
+          toast.error("An unexpected error occurred");
         }
       } else {
-        toast("An unexpected error occurred");
+        toast.error("An unexpected error occurred");
       }
     }
   };

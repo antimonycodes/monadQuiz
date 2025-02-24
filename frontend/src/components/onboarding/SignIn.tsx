@@ -27,10 +27,10 @@ const SignIn = () => {
           );
         } else {
           // General error message
-          toast(error.response.data.message);
+          toast.error(error.response.data.message);
         }
       } else {
-        toast("An unexpected error occurred");
+        toast.error("An unexpected error occurred");
       }
     }
   };
