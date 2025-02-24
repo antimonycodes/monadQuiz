@@ -117,7 +117,7 @@ app.get("/api/avatars", (req, res) => {
   fs.readdir(avatarsDir, (err, files) => {
     if (err) {
       console.error("Error reading avatars directory:", err);
-      return res.status(500).json({ message: "Avatars directory not found." });
+      return res.status(500).json({ message: "Avatars directory not found.." });
     }
 
     const avatars = files.map((file) => ({
