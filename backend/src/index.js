@@ -135,7 +135,10 @@ app.use("/api/questions", questionRoutes);
 
 // ✅ Serve frontend in production
 if (process.env.NODE_ENV === "production") {
-  const frontendPath = path.join(__dirname, "../frontend/dist");
+  const frontendPath = path.join(__dirname, "../../frontend/dist");
+  console.log(__dirname, "dirname");
+
+  console.log("Resolved Frontend Path:", frontendPath);
 
   if (!fs.existsSync(frontendPath)) {
     console.error(
