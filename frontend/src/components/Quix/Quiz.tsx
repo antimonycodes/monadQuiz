@@ -97,7 +97,7 @@ const Quiz = ({ setStep }: QuizProps) => {
   }
 
   return (
-    <div className=" bg-purple-600 h-screen border-gray-400 rounded-2xl p-4">
+    <div className=" bg-purple-600 h-screen border-gray-400 rounded-2xl p-2 xl:px-4">
       {isQuizFinished ? (
         <GameOver
           score={score}

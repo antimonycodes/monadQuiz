@@ -25,7 +25,7 @@ const Questions: React.FC<QuestionProps> = ({
   const navigate = useNavigate();
 
   return (
-    <div className="pb-24 bg-purple-60 rounded-2xl p-4">
+    <div className="pb- bg-purple-60 rounded-2xl p4">
       <div className="max-w-sm mx-auto">
         {/* Header */}
         <div className="flex items-center text-white mb-4">

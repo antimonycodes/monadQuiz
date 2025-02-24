@@ -288,7 +288,7 @@ const GameOver: React.FC<GameOverProps> = ({ score, setStep }) => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-6 xl:gap-12 bg-purple-600 rounded-2xl p-6 h-screen">
+    <div className="flex flex-col items-center gap-6 xl:gap-6 bg-purple-600 rounded-2xl p-6 min-h-screen">
       {/* Confetti Animation */}
       <Confetti width={width} height={height} numberOfPieces={200} />
       {/* <div className="bg-white rounded-full w-32 h-32 flex items-center justify-center mb-16">
@@ -299,14 +299,23 @@ const GameOver: React.FC<GameOverProps> = ({ score, setStep }) => {
       </div> */}
       <MonadLogo />
 
-      <div className="w-full bg-white border border-gray-400 rounded-lg p-8 flex items-center justify-center">
-        <div className="text-center space-y-1">
-          <h1>Game Over!</h1>
-          <h2 className="font-semibold text-xl">
-            Your Score: <span className="text-green-400">{score}</span>
-          </h2>
+      <div className="  mx-auto max-w-3xl flex">
+        <div className=" w-full bg-white border border-gray-400 rounded-lg p-8 flex items-center justify-center">
+          <div className="text-center space-y-1">
+            <h1>Game Over!</h1>
+            <h2 className="font-semibold text-xl">
+              Your Score: <span className="text-green-400">{score}</span>
+            </h2>
+          </div>
         </div>
       </div>
+      <button
+        // onClick={onPlayAgain} // Use the onPlayAgain prop
+        onClick={handlePlayAgain}
+        className="mt-8 bg-yellow-500 text-white py-4 px-8 rounded-lg font-medium hover:bg-yellow-600 transition-colors"
+      >
+        Play Again
+      </button>
 
       <div className="flex items-center justify-center">
         <div className="flex gap-16">
@@ -337,14 +346,6 @@ const GameOver: React.FC<GameOverProps> = ({ score, setStep }) => {
           </Link>
         </div>
       </div>
-
-      <button
-        // onClick={onPlayAgain} // Use the onPlayAgain prop
-        onClick={handlePlayAgain}
-        className="mt-8 bg-yellow-500 text-white py-4 px-8 rounded-lg font-medium hover:bg-yellow-600 transition-colors"
-      >
-        Play Again
-      </button>
 
       <ShareModal
         isOpen={isShareModalOpen}
