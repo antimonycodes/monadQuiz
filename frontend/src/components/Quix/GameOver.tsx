@@ -111,7 +111,7 @@ const ShareModal: React.FC<ShareModalProps> = ({
     ctx.fillStyle = "#ffffff";
     ctx.fillText("Try to beat my score!", canvas.width / 2, 580);
     ctx.fillStyle = "#fcd34d";
-    ctx.fillText("monad-quiz.com", canvas.width / 2, 620);
+    ctx.fillText("/monadquiz.onrender.com", canvas.width / 2, 620);
   };
 
   useEffect(() => {
@@ -126,7 +126,7 @@ const ShareModal: React.FC<ShareModalProps> = ({
       if (!canvas) return;
 
       const imageData = canvas.toDataURL("image/png");
-      const shareText = `I scored ${score} points in MONAD Quiz!\nAccuracy: ${accuracy}%\nStreak: ${streak}\nDifficulty: ${difficulty}\n\nTry to beat my score! www.monad.com`;
+      const shareText = `I scored ${score} points in MONAD Quiz!\nAccuracy: ${accuracy}%\nStreak: ${streak}\nDifficulty: ${difficulty}\n\nTry to beat my score! https://monadquiz.onrender.com/`;
 
       switch (platform) {
         case "whatsapp":

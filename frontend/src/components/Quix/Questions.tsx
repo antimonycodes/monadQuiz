@@ -30,7 +30,7 @@ const Questions: React.FC<QuestionProps> = ({
         {/* Header */}
         <div className="flex items-center text-white mb-4">
           <button className="flex items-center" onClick={() => navigate(-1)}>
-            <ChevronLeft size={20} />
+            <ChevronLeft className=" size-2.5" />
             <span>Back</span>
           </button>
           <div className="flex-1 text-center font-bold">Quiz</div>
