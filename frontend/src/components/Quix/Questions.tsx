@@ -25,7 +25,7 @@ const Questions: React.FC<QuestionProps> = ({
   const navigate = useNavigate();
 
   return (
-    <div className="pb-24 bg-purple-600 rounded-2xl p-4">
+    <div className="pb-24 bg-purple-60 rounded-2xl p-4">
       <div className="max-w-sm mx-auto">
         {/* Header */}
         <div className="flex items-center text-white mb-4">
@@ -37,7 +37,7 @@ const Questions: React.FC<QuestionProps> = ({
         </div>
 
         {/* Question Card */}
-        <div className="relative bg-white rounded-lg p-12 shadow-md shadow-amber-400 mb-8">
+        <div className="relative bg-white rounded-lg py-8 px-4 shadow-md shadow-amber-400 mb-8">
           <div className="absolute right-4 top-4 text-sm font-bold">
             {`${questionNumber}/${totalQuestions}`}
           </div>
@@ -65,7 +65,7 @@ const Questions: React.FC<QuestionProps> = ({
               <button
                 key={option}
                 onClick={() => onAnswerSelected(option)}
-                className={`w-full p-4 rounded-lg text-left font-bold text-lg transition-colors flex justify-between items-center ${buttonClass}`}
+                className={`w-full p-4 rounded-lg text-left font-bold text-sm transition-colors flex justify-between items-center ${buttonClass}`}
                 disabled={!!selectedAnswer}
               >
                 {option}{" "}

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Confetti from "react-confetti";
 import "../Quix/globalstyles.css";
 import useWindowSize from "../../lib/useWindowSize";
+import MonadLogo from "../MonadLogo";
 
 interface GameOverProps {
   score: number;
@@ -287,17 +288,18 @@ const GameOver: React.FC<GameOverProps> = ({ score, setStep }) => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-12 bg-purple-600 rounded-2xl p-12 h-screen">
+    <div className="flex flex-col items-center gap-6 xl:gap-12 bg-purple-600 rounded-2xl p-6 h-screen">
       {/* Confetti Animation */}
       <Confetti width={width} height={height} numberOfPieces={200} />
-      <div className="bg-white rounded-full w-32 h-32 flex items-center justify-center mb-16">
+      {/* <div className="bg-white rounded-full w-32 h-32 flex items-center justify-center mb-16">
         <div className="text-center">
           <div className="text-2xl font-bold text-teal-900">MONAD </div>
           <div className="text-yellow-400 text-sm">Quiz</div>
         </div>
-      </div>
+      </div> */}
+      <MonadLogo />
 
-      <div className="w-full bg-white border border-gray-400 rounded-lg p-12 flex items-center justify-center">
+      <div className="w-full bg-white border border-gray-400 rounded-lg p-8 flex items-center justify-center">
         <div className="text-center space-y-1">
           <h1>Game Over!</h1>
           <h2 className="font-semibold text-xl">
@@ -316,7 +318,7 @@ const GameOver: React.FC<GameOverProps> = ({ score, setStep }) => {
               <Share
                 className="border w-full p-4 rounded-xl border-white shadow-md bg-white"
                 style={{
-                  width: "80px",
+                  width: "60px",
                 }}
               />
               <span className="font-bold">Share</span>
@@ -327,7 +329,7 @@ const GameOver: React.FC<GameOverProps> = ({ score, setStep }) => {
               <Trophy
                 className="max-w-28 h-8 border w-full p-4 rounded-xl border-white shadow-md bg-white"
                 style={{
-                  width: "80px",
+                  width: "60px",
                 }}
               />
               <span className="font-bold">Leaderboard</span>

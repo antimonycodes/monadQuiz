@@ -57,19 +57,19 @@ const Homepage: React.FC<HomepageProps> = ({ onPlayClick }) => {
   };
 
   return (
-    <div className="bg-purple-600 h-screen border  border-gray-400 rounded-2xl p-4 flex flex-col items-center gap-12">
+    <div className="bg-purple-600 h-screen border  border-gray-400 rounded-2xl p-4 flex flex-col items-center gap-6 xl:gap-12">
       {/* user details */}
       <div className=" w-full flex justify-between items-center mb-6">
         {/* name */}
         <div className="flex items-center">
           {/* waving hand */}
-          <div className="text-6xl">{"\uD83D\uDC4B"}</div>
-          <h1 className="text-3xl ml-2">
+          <div className=" text-2xl xl:text-6xl">{"\uD83D\uDC4B"}</div>
+          <h1 className=" text-lg xl:text-3xl ml-2">
             Hi, <span>{username}</span>
           </h1>
         </div>
         {/* Avatar */}
-        <div className=" size-20  rounded-full">
+        <div className=" size-12 xl:size-20  rounded-full">
           {avatar && (
             <img
               src={avatar}
@@ -80,7 +80,7 @@ const Homepage: React.FC<HomepageProps> = ({ onPlayClick }) => {
         </div>
       </div>
       {/* Points-ranking */}
-      <div className=" w-full rounded-3xl bg-white shadow-2xl text-black p-12 px-12 flex justify-between items-center">
+      <div className=" w-full rounded-3xl bg-white shadow-2xl text-black py-12 px-6 xl:px-12 flex justify-between items-center">
         {/* Point */}
         <div className="flex items-center basis-1/2 border-r-2 border-white">
           <Star
