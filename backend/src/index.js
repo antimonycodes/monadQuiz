@@ -36,16 +36,23 @@ const rootDir = path.resolve();
 app.use("/avatars", express.static(path.join(rootDir, "public/avatars")));
 app.get("/api/avatars", (req, res) => {
   const avatarsDir = path.join(rootDir, "public/avatars");
+
+  // Check if the directory exists
+  if (!fs.existsSync(avatarsDir)) {
+    console.error("Avatars directory not found:", avatarsDir);
+    return res.status(500).json({ message: "Avatars directory not found" });
+  }
+
   fs.readdir(avatarsDir, (err, files) => {
     if (err) {
       console.error("Error reading avatars directory:", err);
       return res.status(500).json({ message: "Server error" });
     }
 
-    // Construct avatar URLs
+    // Generate dynamic avatar URLs
     const avatars = files.map((file) => ({
       filename: file,
-      url: `http://localhost:5001/avatars/${file}`, // Avatar URL
+      url: `${req.protocol}://${req.get("host")}/avatars/${file}`,
     }));
 
     res.status(200).json(avatars);
