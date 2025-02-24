@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Questions from "./Questions";
 import Timer from "../../utils/Timer";
 import GameOver from "./GameOver";
+import Loader from "../Loader"; // Import the Loader component
 import { axiosInstance } from "../../lib/axios";
 
 interface QuizProps {
@@ -21,15 +22,20 @@ const Quiz = ({ setStep }: QuizProps) => {
   const [isQuizFinished, setIsQuizFinished] = useState(false);
   const [timeLeft, setTimeLeft] = useState(15);
   const [score, setScore] = useState(0);
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
+
   const fetchQuestions = async () => {
     try {
       const response = await axiosInstance.get("/questions/questions");
       console.log("Fetched questions:", response.data); // Debugging log
       setQuestions(response.data);
+      setIsLoading(false); // Set loading to false after fetching questions
     } catch (error) {
       console.error("Error fetching questions:", error);
+      setIsLoading(false); // Set loading to false in case of error
     }
   };
+
   useEffect(() => {
     fetchQuestions();
   }, []);
@@ -92,12 +98,12 @@ const Quiz = ({ setStep }: QuizProps) => {
     );
   }
 
-  if (questions.length === 0) {
-    return <div>Loading...</div>;
+  if (isLoading) {
+    return <Loader />; // Show loader while loading
   }
 
   return (
-    <div className=" bg-purple-600 h-screen border-gray-400 rounded-2xl p-2 xl:px-4">
+    <div className="bg-purple-600 h-screen border-gray-400 rounded-2xl p-2 xl:px-4">
       {isQuizFinished ? (
         <GameOver
           score={score}
